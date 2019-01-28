@@ -56,6 +56,10 @@ app.post('/delete-movie/:id', (req,res)=>{
     conn.query(sql, (err,result)=>{
         res.send(result)
     })
+    var delete2 = `delete from movcat where id_mov=${req.params.id}`;
+    conn.query(delete2,(err,results)=>{
+        console.log(results)
+    })
 })
 //end movies
 
@@ -94,13 +98,17 @@ app.post('/delete-cat/:id',(req,res)=>{
     conn.query(sql, (err,result)=>{
         res.send(result)
     })
+    var delete2 = `delete from movcat where id_cat=${req.params.id}`;
+    conn.query(delete2,(err,results)=>{
+        console.log(results)
+    })
 })
 //end categories
 
 //-------------------------------------------------------------------------------------------------------------->
 
 //menambahkan data connect movie & categories
-app.post('/addmovcat' , (req,res) => {
+app.post('/add-movcat' , (req,res) => {
     var newMC = req.body
     var sql =`insert into movcat set ?`
     conn.query(sql ,newMC,(err,result)=>{
